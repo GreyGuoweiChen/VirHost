@@ -7,7 +7,7 @@ model structure
 Outstanding performance in .. experiments ...
 
 ## Usage
-VirHost is designed to predict the hosts of RNA viruses within known virus orders. To enable VirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. The first column is the accession numbers in the query fasta file, and the second column show the virus orders of the query viruses.
+VirHost is designed to predict the hosts of RNA viruses identified from metagenomics. To enable VirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. The first column is the accession numbers in the query fasta file, and the second column show the virus orders of the query viruses.
 |   | y\|virus order |
 | ------------- | ------------- |
 | NC_000858.1 | Ortervirales  |
