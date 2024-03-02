@@ -75,7 +75,7 @@ VirBot.py:
 -i, --input: The input contig file in fasta format.
 --taxa: The input csv file corresponding to the virus order labels of the queries (default: VH_taxa.csv).
 -o, --output: The output directory (default: VH_result).
-``
+```
 
 
 ### Example
