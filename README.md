@@ -1,16 +1,40 @@
 # VirHost: a machine learning-based method for predicting reservoir hosts of RNA viruses through viral genomes
-## Desription 
 Target: metagenomic-assembled RNA viruses, 
 host label lists include 4 eukaryotic kingdom and the prokayotic domain, allow order level classification...
 
 model structure
 Outstanding performance in .. experiments ...
 
-Viruses are obligate intracellular parasites that depend on living organisms for their replication and survival. RNA viruses, possessing RNA as their genetic material, have the capability to infect a diverse array of organisms. While the application of metagenomic high-throughput sequencing technologies have facilitated the discovery of the viral dark matter, how to determine the reservoir hosts of the metagenome-originated viruses remains challenging owing to the complex composition of the metagenomic sequencing samples. 
+Viruses are obligate intracellular parasites that depend on living organisms for their replication and survival. While the application of metagenomic high-throughput sequencing technologies have facilitated the discovery of the viral dark matter, how to determine the reservoir hosts of the metagenome-originated viruses remains challenging owing to the complex composition of the metagenomic sequencing samples. The high genetic diversity of RNA viruses poses a great challenge to the alignment-based methods.
+
+Here, we introduce VirHost, a machine learning-based tool that predicts the reservoirs of RNA viruses solely based on viral genomes. It takes complete RNA viral genomes as input and predicts the natural reservoir host group from kingdom level to order level. 
+
+VirHost is designed as a two-layer classification framework to hierarcically predict the host groups of query viruses. Layer 1 contains 5 branches (Chordata, Invertebrate, Viridiplantae, Fungi, Bacteria), which are categorized into kingdom and phylum level. Layer 2, designed for Chordata subtree, has 10 leaves, which are at the class and order level. VirHost hierarchically predict the host lineage along the tree. To achieve an accuracte host prediction method, it combines the virustaxonomic information, viral genomic traits, and sequences homology. Among 
+
+## Dependency:
+* python 3.x
+* BLAST 2.12.0
+* Prodigal 2.6.3
+* xgboost 2.0.3
+* pandas 2.0.3
+* biopython 1.83
+* numpy 1.23.5
+
+### Quick install
+We highly recommend using conda to install all the dependencies. To install, please download VirHost by "git clone"
+```
+git clone https://github.com/GreyGuoweiChen/VirHost.git
+cd VirHost
+
+# create the environment and install the dependencies using conda
+conda create -n virhost -c bioconda python=3.8 xgboost pandas numpy blast prodigal biopython numpy
+
+# activate the environment
+conda activate virhost
+```
 
 
-
-## Usage
+## Usage:
 VirHost is designed to predict the hosts of RNA viruses identified from metagenomics. To enable VirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. The first column is the accession numbers in the query fasta file, and the second column show the virus orders of the query viruses.
 |   | y\|virus order |
 | ------------- | ------------- |
