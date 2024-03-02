@@ -46,7 +46,7 @@ python determine_order.py [-i INPUT_CONTIG] [-o TAXONOMIC_RESULT]
 
 The input files include the fasta file and the corresponding taxonomic information table.
 ```
-python VirBot.py [-i INPUT_CONTIG] [--taxa TAXONOMIC_INFORMATION_OF_INPUT] [-o OUTPUT_DIRECTORY]
+python virhost.py [-i INPUT_CONTIG] [--taxa TAXONOMIC_INFORMATION_OF_INPUT] [-o OUTPUT_DIRECTORY]
 ```
 
 The output format is as:
@@ -67,7 +67,7 @@ determine_order.py:
 -o: The taxonoic information of query viruses at order level (default: VH_taxa.csv).
 ```
 
-VirBot.py:
+virhost.py:
 ```
 -i, --input: The input contig file in fasta format.
 --taxa: The input csv file corresponding to the virus order labels of the queries (default: VH_taxa.csv).
