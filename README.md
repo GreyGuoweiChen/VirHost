@@ -42,13 +42,12 @@ To enable VirHost's prediction, the viral taxonomic information is required and 
 | NC_019922.1  | Norzivirales  |
 | ...  | ...  |
 
-(Optional) For friendly usage, we provided a simple alignment-based method to classify the virus sequences at the order level by BLASTN. However, we recommend users to generate their own taxonomic classification result at the order level, which is expected to improve the prediction confidence.
+(Optional) For friendly usage, we provided a simple alignment-based method to classify the virus sequences at the order level by BLASTN. However, we recommend users to generate their own taxonomic classification result, which is expected to improve the prediction confidence.
 ```
 python determine_order.py [-i INPUT_CONTIG] [-o TAXONOMIC_RESULT]
 ```
 
-The input files include the fasta file and the corresponding taxonomic information table. The prediction will be output to {otuput_dir}/result.csv
-
+The input files include the fasta file and the corresponding taxonomic information table.
 ```
 python VirBot.py [-i INPUT_CONTIG] [--taxa TAXONOMIC_INFORMATION_OF_INPUT] [-o OUTPUT_DIRECTORY]
 ```
@@ -63,6 +62,17 @@ The output format is as:
 The evidence list has 5 labels, including **pred_high_confidence**, **pred_low_confidence**, **assign**, **BLASTn**, and **unclassified**. The "pred" prefix represent that the prediction is made by the learning model. If the prediction score is hgiher than the built-in score cutoff, we regard it as a high-confidence prediction and thus give "pred_high_confidence"; otherwise, we will give "pred_low_confidence". The "assign" evidence means that the reference viruses in the same order with the query virus infect a specific host group. So we assign the host group to the virus order without prediction.
 
 Besides, VirHost encodes the query sequences at the protein level. To obtain the protein level representation, we translate the sequences into proteins by prodigal first. For those sequences do not encode proteins, it is challenging to generate a reliable result, and VirHost does not accept these non-coding sequences for higher confidence. However, for user convenience, we try to predict the host of these sequences adopting the best alignment stratedy by BLASTn. We aligned the query virus against our reference database, assign the host as the label of the best hit result, and give "BLASTn" evidence. Finally, we give the "unclassified" evidence to query viruses which do not have order information.
+
+### Option
+determine_order.py:
+-i: The input contig file in fasta format.
+-o: The taxonoic information of query viruses at order level (default: VH_taxa.csv).
+
+VirBot.py:
+-i, --input: The input contig file in fasta format.
+--taxa: The input csv file corresponding to the virus order labels of the queries (default: VH_taxa.csv).
+-o, --output: The output directory (default: VH_result).
+
 
 ### Example
 ```
