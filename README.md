@@ -1,15 +1,12 @@
 # VirHost: a machine learning-based method for predicting reservoir hosts of RNA viruses through viral genomes
-Target: metagenomic-assembled RNA viruses, 
-host label lists include 4 eukaryotic kingdom and the prokayotic domain, allow order level classification...
 
-model structure
-Outstanding performance in .. experiments ...
+
 
 Viruses are obligate intracellular parasites that depend on living organisms for their replication and survival. While the application of metagenomic high-throughput sequencing technologies have facilitated the discovery of the viral dark matter, how to determine the reservoir hosts of the metagenome-originated viruses remains challenging owing to the complex composition of the metagenomic sequencing samples. The high genetic diversity of RNA viruses poses a great challenge to the alignment-based methods.
 
-Here, we introduce VirHost, a machine learning-based tool that predicts the reservoirs of RNA viruses solely based on viral genomes. It takes complete RNA viral genomes as input and predicts the natural reservoir host group from kingdom level to order level. 
+Here, we introduce VirHost, a machine learning-based tool that predicts the reservoirs of RNA viruses solely based on viral genomes. It takes complete RNA viral genomes as input and predicts the natural reservoir host groups from kingdom level to order level. 
 
-VirHost is designed as a two-layer classification framework to hierarcically predict the host groups of query viruses. Layer 1 contains 5 branches (Chordata, Invertebrate, Viridiplantae, Fungi, Bacteria), which are categorized into kingdom and phylum level. Layer 2, designed for Chordata subtree, has 10 leaves, which are at the class and order level. VirHost hierarchically predict the host lineage along the tree. To achieve an accuracte host prediction method, it combines the virustaxonomic information, viral genomic traits, and sequences homology. Among 
+VirHost is designed as a two-layer classification framework to hierarcically predict the host groups of query viruses. Layer 1 contains 5 branches (Chordata, Invertebrate, Viridiplantae, Fungi, Bacteria), which are categorized into kingdom and phylum level. Layer 2, designed for Chordata subtree, has 10 leaves, which are at the class and order level. VirHost utilizes a hierarchical approach to predict the host lineage along the tree. It combines various factors, including virustaxonomic information, viral genomic traits, and sequence homology, to achieve accurate host prediction. To provide different levels of confidence in the predictions, VirHost incorporates prediction score cutoffs. This cutoff allows users to classify the predictions into different confidence level.
 
 ## Dependency:
 * python 3.x
