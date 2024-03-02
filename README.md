@@ -65,13 +65,17 @@ Besides, VirHost encodes the query sequences at the protein level. To obtain the
 
 ### Option
 determine_order.py:
+```
 -i: The input contig file in fasta format.
 -o: The taxonoic information of query viruses at order level (default: VH_taxa.csv).
+```
 
 VirBot.py:
+```
 -i, --input: The input contig file in fasta format.
 --taxa: The input csv file corresponding to the virus order labels of the queries (default: VH_taxa.csv).
 -o, --output: The output directory (default: VH_result).
+``
 
 
 ### Example
