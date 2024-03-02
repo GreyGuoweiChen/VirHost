@@ -1,10 +1,14 @@
-# VirHost
+# VirHost: a machine learning-based method for predicting reservoir hosts of RNA viruses through viral genomes
 ## Desription 
 Target: metagenomic-assembled RNA viruses, 
 host label lists include 4 eukaryotic kingdom and the prokayotic domain, allow order level classification...
 
 model structure
 Outstanding performance in .. experiments ...
+
+Viruses are obligate intracellular parasites that depend on living organisms for their replication and survival. RNA viruses, possessing RNA as their genetic material, have the capability to infect a diverse array of organisms. While the application of metagenomic high-throughput sequencing technologies have facilitated the discovery of the viral dark matter, how to determine the reservoir hosts of the metagenome-originated viruses remains challenging owing to the complex composition of the metagenomic sequencing samples. 
+
+
 
 ## Usage
 VirHost is designed to predict the hosts of RNA viruses identified from metagenomics. To enable VirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. The first column is the accession numbers in the query fasta file, and the second column show the virus orders of the query viruses.
