@@ -24,7 +24,7 @@ git clone https://github.com/GreyGuoweiChen/VirHost.git
 cd VirHost
 
 # create the environment and install the dependencies using conda
-conda create -n virhost -c bioconda python=3.8 blast=2.12.0 xgboost pandas numpy prodigal biopython numpy
+conda create -n virhost -c bioconda python=3.8 blast=2.12.0 xgboost pandas numpy prodigal biopython
 
 # activate the environment
 conda activate virhost
