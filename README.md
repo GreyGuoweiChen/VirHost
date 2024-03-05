@@ -12,8 +12,9 @@ VirHost is designed as a two-layer classification framework to hierarcically pre
 * python 3.x
 * BLAST 2.12.0
 * Prodigal 2.6.3
-* xgboost 2.0.3
+* xgboost 1.7.4
 * pandas 2.0.3
+* scikit-learn 1.1.3
 * biopython 1.83
 * numpy 1.23.5
 
@@ -24,7 +25,7 @@ git clone https://github.com/GreyGuoweiChen/VirHost.git
 cd VirHost
 
 # create the environment and install the dependencies using conda
-conda create -n virhost -c bioconda python=3.8 blast=2.12.0 xgboost pandas numpy prodigal biopython
+conda create -n virhost -c bioconda python=3.8 blast=2.12.0 xgboost pandas numpy prodigal biopython scikit-learn
 
 # activate the environment
 conda activate virhost
