@@ -9,14 +9,14 @@ VirHost_path = str(os.path.dirname(os.path.abspath(__file__)))
 def parse_cmd():
     parser = argparse.ArgumentParser(description="ARGUMENTS")
     parser.add_argument('-i', '--input', type = str, help="The name of query fasta file.")
-    parser.add_argument('-o', '--output', default='.', type = str,
-                        help="The output directory，including the output and intermediate file.")
+    parser.add_argument('-o', '--output', default='VH_taxa.csv', type = str,
+                        help="The output taxonomic file.")
     args = parser.parse_args()
 
     if not os.path.exists(args.input):
-        raise Exception("The fasta file does not exist")
-    if not os.path.exists(args.output):
-        raise Exception("The output directory does not exist")
+        raise Exception("The fasta file does not exist.")
+    if os.path.exists(args.output):
+        raise Exception("The output directory exists.")
     return args
 
 def make_blast_db(arg):
@@ -46,7 +46,7 @@ def alignment(arg):
         f"blastn -task blastn -max_target_seqs 10 -max_hsps 1 -evalue 1 -outfmt 6 "
         f"-query {arg.input} "
         f"-db {VirHost_path}/virus/blastn "
-        f"-out {arg.output}/VH_blastn.tmp.txt", shell=True)
+        f"-out VH_blastn.tmp.txt", shell=True)
     print("Finished aligning.")
 
 def read_blast(X, df_train, blast_out):
@@ -83,12 +83,12 @@ if __name__ == "__main__":
     # df["E"] = 1
 
     df_train = pd.read_csv(f"{VirHost_path}/virus/virus_label.csv", index_col=0)
-    df = read_blast(df, df_train, f"{arg.output}/VH_blastn.tmp.txt")
-    res = subprocess.check_call( f"rm {arg.output}/VH_blastn.tmp.txt", shell=True)
+    df = read_blast(df, df_train, f"VH_blastn.tmp.txt")
+    res = subprocess.check_call( f"rm VH_blastn.tmp.txt", shell=True)
 
     df["y|virus order"] = df["y|virus order"].fillna("Unclassified")
     df = df.drop(columns=["score"])
-    df.to_csv(f"{arg.output}/VH_taxa.csv")
+    df.to_csv(f"{arg.output}")
 
 
 
