@@ -82,10 +82,10 @@ Besides, VirHost encodes the query sequences at the protein level. To obtain the
 ### Example
 ```
 # create the taxonomic file first
-python determine_order.py -i test/test.fasta -o VH_taxa.csv
+python determine_order.py -i test/test.fasta 
 
 # predict the host of query viruses
-python virhost.py -i test/test.fasta --taxa VH_taxa.csv -o VH_result
+python virhost.py -i test/test.fasta -o VH_result
 ```
 
 
