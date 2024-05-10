@@ -40,7 +40,7 @@ To enable VirHost's prediction, the viral taxonomic information is required and 
 | NC_019922.1  | Norzivirales  |
 | ...  | ...  |
 
-(Optional) For friendly usage, we provided a simple alignment-based method to classify the virus sequences at the order level by BLASTN. However, we recommend users to generate their own taxonomic classification result, which is expected to improve the prediction confidence.
+(Optional) For user convenience, we provide a simple alignment-based method for classifying virus sequences at the order level using BLASTN. Generally, the order-level predictions provided by BLASTN are sufficiently accurate. However, if users desire to refine the classification using other programs, they can follow the file format outlined in the table above. The file comprises (r+1) rows and two columns, where (r+1) represents the r sequences in the query fasta file and an additional header row. The first column denotes the sequence ID, and the second column represents the corresponding order label. If a label falls outside our designated range, it is OK to input them to the host prediction stage, and we will output the corresponding sequence ID in a separate file.
 ```
 python determine_order.py [-i INPUT_CONTIG] [-o TAXONOMIC_RESULT]
 ```
