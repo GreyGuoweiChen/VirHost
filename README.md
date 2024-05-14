@@ -19,7 +19,7 @@ RNAVirHost is designed as a two-layer classification framework to hierarcically 
 * numpy 1.23.5
 
 ### Quick install
-We highly recommend using 'conda'/'mamba' to install all the dependencies. To install, please download RNAVirHost by "git clone"
+We highly recommend using `conda`/`mamba` to install all the dependencies. To install, please download RNAVirHost by "git clone"
 ```
 git clone https://github.com/GreyGuoweiChen/VirHost.git
 cd VirHost
