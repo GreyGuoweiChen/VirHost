@@ -1,4 +1,6 @@
+#! /usr/bin/env python3
 import os
+import sys
 import subprocess
 import argparse
 import pandas as pd
@@ -10,7 +12,7 @@ from copy import deepcopy
 import warnings
 warnings.filterwarnings('ignore')
 
-VirHost_path = str(os.path.dirname(os.path.abspath(__file__)))
+VirHost_path = str(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 order_pred_list = pd.read_csv(f"{VirHost_path}/model/order_pred.csv", index_col=0).index.to_list()
 df_order_assign = pd.read_csv(f"{VirHost_path}/model/order_assign.csv", index_col=0)
 order_assign_list = df_order_assign.index.to_list()
@@ -73,24 +75,27 @@ def check_dependancy():
     except Exception as e:
         raise Exception("Lack of dependency package in python environment: prodigal")
 
-def parse_cmd():
-    parser = argparse.ArgumentParser(description = "ARGUMENTS")
+#def parse_cmd():
+#    parser = argparse.ArgumentParser(description = "ARGUMENTS")
+def fetch_arguments(parser):
+    parser.set_defaults(func=main)
+    parser.set_defaults(program="predict")
     parser.add_argument('-i', '--input', type = str, help = "The query fasta file.")
-    parser.add_argument('--taxa', default="VH_taxa.csv", type = str, help = "The virus order taxa of query sequences. (.csv)")
-    parser.add_argument('-o', '--output', default = "VH_result", type = str,
+    parser.add_argument('--taxa', default="RVH_taxa.csv", type = str, help = "The virus order taxa of query sequences. (.csv)")
+    parser.add_argument('-o', '--output', default = "RVH_result", type = str,
                         help="The output directory，including the output and intermediate file.")
     # parser.add_argument('--layer', default = 2, type = int,
     #                     help="The deepest layer of the host phylogenetic tree.")
-    args = parser.parse_args()
-    return args
+#    args = parser.parse_args()
+#    return args
 
 
 def check_cmd(args):
-    file_seq = args.input
+    file_seq = args["input"]
     if not os.path.exists(file_seq):
         raise Exception("The input fasta file do not exist.")
 
-    file_taxa = args.taxa
+    file_taxa = args["taxa"]
     if not os.path.exists(file_taxa):
         raise Exception("The taxonomic information is required.")
 
@@ -108,7 +113,7 @@ def check_cmd(args):
         print(e)
         exit()
 
-    output_dir = args.output
+    output_dir = args["output"]
     if os.path.exists(output_dir):
         raise Exception(f"The output directory ({output_dir}) already exists.")
 
@@ -428,13 +433,14 @@ def predict(df_taxa, output_dir, acc_without_protein):
 
 
 ########################################################################################################
-if __name__ == "__main__":
+
+def main(args):
     check_dependancy()
-    args = parse_cmd()
+#    args = parse_cmd()
     check_cmd(args)
 
 
-    file_seq, file_taxa, output_dir = args.input, args.taxa, args.output
+    file_seq, file_taxa, output_dir = args["input"], args["taxa"], args["output"]
     os.makedirs(output_dir)
     temp_dir = f"{output_dir}/tmp"
     os.makedirs(temp_dir)
@@ -458,5 +464,8 @@ if __name__ == "__main__":
     df_pred.to_csv(f"{output_dir}/result.csv")
     print("Done!")
     print(f"Output the prediction to {output_dir}/result")
+    
+#if __name__ == "__main__":
+#    sys.exit(main())
 
 

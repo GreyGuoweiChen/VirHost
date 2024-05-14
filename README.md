@@ -1,12 +1,12 @@
-# VirHost: a machine learning-based method for predicting reservoir hosts of RNA viruses through viral genomes
+# RNAVirHost: a machine learning-based method for predicting hosts of RNA viruses through viral genomes
 
 
 
 Viruses are obligate intracellular parasites that depend on living organisms for their replication and survival. While the application of metagenomic high-throughput sequencing technologies have facilitated the discovery of the viral dark matter, how to determine the reservoir hosts of the metagenome-originated viruses remains challenging owing to the complex composition of the metagenomic sequencing samples. The high genetic diversity of RNA viruses poses a great challenge to the alignment-based methods.
 
-Here, we introduce VirHost, a machine learning-based tool that predicts the reservoirs of RNA viruses solely based on viral genomes. It takes complete RNA viral genomes as input and predicts the natural reservoir host groups from kingdom level to order level. 
+Here, we introduce RNAVirHost, a machine learning-based tool that predicts the hosts of RNA viruses solely based on viral genomes. It takes complete RNA viral genomes as input and predicts the natural host groups from kingdom level to order level. 
 
-VirHost is designed as a two-layer classification framework to hierarcically predict the host groups of query viruses. Layer 1 contains 5 branches (Chordata, Invertebrate, Viridiplantae, Fungi, Bacteria), which are categorized into kingdom and phylum level. Layer 2, designed for Chordata subtree, has 10 leaves, which are at the class and order level. VirHost utilizes a hierarchical approach to predict the host lineage along the tree. It combines various factors, including virustaxonomic information, viral genomic traits, and sequence homology, to achieve accurate host prediction. To provide different levels of confidence in the predictions, VirHost incorporates prediction score cutoffs. This cutoff allows users to classify the predictions into different confidence level.
+RNAVirHost is designed as a two-layer classification framework to hierarcically predict the host groups of query viruses. Layer 1 contains 5 branches (Chordata, Invertebrate, Viridiplantae, Fungi, Bacteria), which are categorized into kingdom and phylum level. Layer 2, designed for Chordata subtree, has 10 leaves, which are at the class and order level. RNAVirHost utilizes a hierarchical approach to predict the host lineage along the tree. It combines various factors, including virustaxonomic information, viral genomic traits, and sequence homology, to achieve accurate host prediction. To provide different levels of confidence in the predictions, RNAVirHost incorporates prediction score cutoffs. This cutoff allows users to classify the predictions into different confidence level.
 
 ## Dependency:
 * python 3.x
@@ -19,7 +19,7 @@ VirHost is designed as a two-layer classification framework to hierarcically pre
 * numpy 1.23.5
 
 ### Quick install
-We highly recommend using conda to install all the dependencies. To install, please download VirHost by "git clone"
+We highly recommend using conda to install all the dependencies. To install, please download RNAVirHost by "git clone"
 ```
 git clone https://github.com/GreyGuoweiChen/VirHost.git
 cd VirHost
@@ -33,7 +33,7 @@ conda activate virhost
 
 
 ## Usage:
-To enable VirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. The first column is the accession numbers in the query fasta file, and the second column show the virus orders of the query viruses.
+To enable RNAVirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. The first column is the accession numbers in the query fasta file, and the second column show the virus orders of the query viruses.
 |   | y\|virus order |
 | ------------- | ------------- |
 | NC_000858.1 | Ortervirales  |
@@ -74,7 +74,7 @@ The output format is as:
 
 The evidence list has 5 labels, including **pred_high_confidence**, **pred_low_confidence**, **assign**, **BLASTn**, and **unclassified**. The "pred" prefix represent that the prediction is made by the learning model. If the prediction score is higher than the built-in score cutoff, we regard it as a high-confidence prediction and thus give "pred_high_confidence"; otherwise, we will give "pred_low_confidence". The "assign" evidence means that the reference viruses in the same order with the query virus infect a specific host group. So we assign the host group to the virus order without prediction.
 
-Besides, VirHost encodes the query sequences at the protein level. To obtain the protein level representation, we translate the sequences into proteins by prodigal first. For those sequences do not encode proteins, it is challenging to generate a reliable result, and VirHost does not accept these non-coding sequences for higher confidence. However, for user's convenience, we try to predict hosts of these sequences adopting the best alignment strategy by BLASTn. We aligned the query virus against our reference database, assign the host as the label of the best hit reference, and give "BLASTn" evidence. Finally, we give the "unclassified" evidence to query viruses which do not have order information.
+Besides, RNAVirHost encodes the query sequences at the protein level. To obtain the protein level representation, we translate the sequences into proteins by prodigal first. For those sequences do not encode proteins, it is challenging to generate a reliable result, and RNAVirHost does not accept these non-coding sequences for higher confidence. However, for user's convenience, we try to predict hosts of these sequences adopting the best alignment strategy by BLASTn. We aligned the query virus against our reference database, assign the host as the label of the best hit reference, and give "BLASTn" evidence. Finally, we give the "unclassified" evidence to query viruses which do not have order information.
 
 
 

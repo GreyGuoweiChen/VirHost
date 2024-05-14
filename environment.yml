@@ -1,0 +1,14 @@
+name: rnavirhost
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3
+  - numpy>=1.23.5
+  - pandas>=2.0.3
+  - scikit-learn>=1.1.3
+  - xgboost>=1.7.4
+  - biopython>=1.83
+  - blast>=2.12.0
+  - prodigal>=2.6.3

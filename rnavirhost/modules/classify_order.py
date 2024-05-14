@@ -1,25 +1,30 @@
+#! /usr/bin/env python3
 import os
+import sys
 import subprocess
 import argparse
 import pandas as pd
 from Bio import SeqIO
 
-VirHost_path = str(os.path.dirname(os.path.abspath(__file__)))
+VirHost_path = str(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-def parse_cmd():
-    parser = argparse.ArgumentParser(description="ARGUMENTS")
+#def parse_cmd():
+def fetch_arguments(parser):
+    parser.set_defaults(func=main)
+    parser.set_defaults(program="classify_order")
+#    parser = argparse.ArgumentParser(description="ARGUMENTS")
     parser.add_argument('-i', '--input', type = str, help="The name of query fasta file.")
-    parser.add_argument('-o', '--output', default='VH_taxa.csv', type = str,
+    parser.add_argument('-o', '--output', default='RVH_taxa.csv', type = str,
                         help="The output taxonomic file.")
-    args = parser.parse_args()
+#    args = parser.parse_args()
 
-    if not os.path.exists(args.input):
-        raise Exception("The fasta file does not exist.")
-    if os.path.exists(args.output):
-        raise Exception("The output directory exists.")
-    return args
+#    if not os.path.exists(args.input):
+#        raise Exception("The fasta file does not exist.")
+#    if os.path.exists(args.output):
+#        raise Exception("The output directory exists.")
+#    return args
 
-def make_blast_db(arg):
+def make_blast_db(args):
     try:
         res = subprocess.check_call(f"which blastn",
                                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
@@ -41,12 +46,12 @@ def make_blast_db(arg):
         f"-out {VirHost_path}/virus/blastn",
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, shell=True)
 
-def alignment(arg):
+def alignment(args):
     res = subprocess.check_call(  # f"source ~/.bashrc; "
         f"blastn -task blastn -max_target_seqs 10 -max_hsps 1 -evalue 1 -outfmt 6 "
-        f"-query {arg.input} "
+        f"-query {args['input']} "
         f"-db {VirHost_path}/virus/blastn "
-        f"-out VH_blastn.tmp.txt", shell=True)
+        f"-out RVH_blastn.tmp.txt", shell=True)
     print("Finished aligning.")
 
 def read_blast(X, df_train, blast_out):
@@ -67,12 +72,17 @@ def read_blast(X, df_train, blast_out):
     return X
 
 
-if __name__ == "__main__":
-    arg = parse_cmd()
-    fasta_file, file_output = arg.input, arg.output
+def main(args):
+#    args = parse_cmd()
+    if not os.path.exists(args["input"]):
+        raise Exception("The fasta file does not exist.")
+    if os.path.exists(args["output"]):
+        raise Exception("The output directory exists.")
+        
+    fasta_file, file_output = args["input"], args["output"]
 
-    make_blast_db(arg)
-    alignment(arg)
+    make_blast_db(args)
+    alignment(args)
 
     acc_oredered_list = []
     with open(fasta_file, "r") as fasta_handle:
@@ -83,12 +93,15 @@ if __name__ == "__main__":
     # df["E"] = 1
 
     df_train = pd.read_csv(f"{VirHost_path}/virus/virus_label.csv", index_col=0)
-    df = read_blast(df, df_train, f"VH_blastn.tmp.txt")
-    res = subprocess.check_call( f"rm VH_blastn.tmp.txt", shell=True)
+    df = read_blast(df, df_train, f"RVH_blastn.tmp.txt")
+    res = subprocess.check_call( f"rm RVH_blastn.tmp.txt", shell=True)
 
     df["y|virus order"] = df["y|virus order"].fillna("Unclassified")
     df = df.drop(columns=["score"])
-    df.to_csv(f"{arg.output}")
+    df.to_csv(f"{args['output']}")
+ 
+#if __name__ == "__main__":
+#    sys.exit(main())
 
 
 
