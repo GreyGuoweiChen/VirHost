@@ -10,7 +10,7 @@ def main():
         description=f"""RNAVirusHost v{rnavirhost.__version__}: a machine learning-based method for predicting hosts of RNA viruses through viral genomes
 https://github.com/GreyGuoweiChen/VirHost.git
 
-usage: RNAVirHost <program> [options]
+usage: rnavirhost <program> [options]
 
 programs:
     classify_order          classifier query viruses at order level
@@ -24,7 +24,7 @@ programs:
         usage=argparse.SUPPRESS,
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description="""Classifier query viruses at order level
-\nusage: RNAVirHost classify_order -i <input> -o <taxa.csv> [options]""",
+\nusage: rnavirhost classify_order -i <input> -o <taxa.csv> [options]""",
     )
     rnavirhost.classify_order.fetch_arguments(classify_order_parser)
 
@@ -33,7 +33,7 @@ programs:
         usage=argparse.SUPPRESS,
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description="""Predict hosts of the query viruses
-\nusage: RNAVirHost predict -i <input> --taxa <taxa.csv> [options] -o <output> [options]""",
+\nusage: rnavirhost predict -i <input> --taxa <taxa.csv> [options] -o <output> [options]""",
     )
     rnavirhost.predict.fetch_arguments(predict_parser)
 

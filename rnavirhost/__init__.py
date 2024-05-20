@@ -6,6 +6,6 @@ from rnavirhost.modules import (
     classify_order,
     predict,
 )
-from rnavirhost import RNAVirHost
+from rnavirhost import rnavirhost
 
 __version__ = "1.0"

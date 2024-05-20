@@ -34,7 +34,7 @@ conda activate rnavirhost
 pip install .
 
 # you may check the installation by calling:
-conda list RNAVirHost
+conda list rnavirhost
 ```
 
 
@@ -48,12 +48,12 @@ To enable RNAVirHost's prediction, the viral taxonomic information is required a
 
 (Optional) For user convenience, we provide a simple alignment-based method for classifying virus sequences at the order level using BLASTN. Generally, the order-level predictions provided by BLASTN are sufficiently accurate. However, if users desire to refine the classification using other programs, they can follow the file format outlined in the table above. The file comprises (r+1) rows and two columns, where (r+1) represents the r sequences in the query fasta file and an additional header row. The first column denotes the sequence ID, and the second column represents the corresponding order label. If a label falls outside our designated range, it is OK to input them to the host prediction stage, and we will output the corresponding sequence ID in a separate file.
 ```
-RNAVirHost classify_order [-i INPUT_CONTIG] [-o TAXONOMIC_RESULT]
+rnavirhost classify_order [-i INPUT_CONTIG] [-o TAXONOMIC_RESULT]
 ```
 
 The input files include the fasta file and the corresponding taxonomic information table.
 ```
-RNAVirHost predict [-i INPUT_CONTIG] [--taxa TAXONOMIC_INFORMATION_OF_INPUT] [-o OUTPUT_DIRECTORY]
+rnavirhost predict [-i INPUT_CONTIG] [--taxa TAXONOMIC_INFORMATION_OF_INPUT] [-o OUTPUT_DIRECTORY]
 ```
 
 ### Programs' Option
@@ -88,10 +88,10 @@ Besides, RNAVirHost encodes the query sequences at the protein level. To obtain 
 ### Example
 ```
 # create the taxonomic file first
-RNAVirHost classify_order -i test/test.fasta 
+rnavirhost classify_order -i test/test.fasta 
 
 # predict the host of query viruses
-RNAVirHost predict -i test/test.fasta -o RVH_result
+rnavirhost predict -i test/test.fasta -o RVH_result
 ```
 
 
