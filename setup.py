@@ -19,7 +19,7 @@ setup(name='rnavirhost',
       license='MIT',
       entry_points={
         "console_scripts":[
-        "RNAVirHost = rnavirhost.RNAVirHost:main"
+        "rnavirhost = rnavirhost.rnavirhost:main"
 #        "rnavirhost = rnavirhost.rnavirhost:main",
 #        "determine_order = rnavirhost.determine_order:main",
         ]},
