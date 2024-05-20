@@ -8,4 +8,4 @@ from rnavirhost.modules import (
 )
 from rnavirhost import rnavirhost
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
