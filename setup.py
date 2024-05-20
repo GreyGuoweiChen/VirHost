@@ -17,6 +17,15 @@ setup(name='rnavirhost',
       author='CHEN Guowei',
       author_email='gwchen3-c@my.cityu.edu.hk',
       license='MIT',
+      install_requires=[
+        'blast>=2.12.0',
+        'numpy>=1.23.5',
+        'pandas>=2.0.3',
+        'scikit-learn>=1.1.3',
+        'xgboost>=1.7.4',
+        'biopython>=1.83',
+        'prodigal>=2.6.3'
+    ],
       entry_points={
         "console_scripts":[
         "rnavirhost = rnavirhost.rnavirhost:main"
