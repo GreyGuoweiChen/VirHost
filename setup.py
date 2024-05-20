@@ -11,6 +11,8 @@ setup(name='rnavirhost',
       package_data={"rnavirhost":["virus/*", "model/*"]},
       #install_requires=['blast>=1.0.1'],
       description='RNAVirHost: a machine learning-based method for predicting hosts of RNA viruses through viral genomes',
+      keywords=['Bioconda RNAvirus HostPrediction MachineLearning Metagenomics'],
+      classifiers=[],
       url='https://github.com/GreyGuoweiChen/VirHost.git',
       author='CHEN Guowei',
       author_email='gwchen3-c@my.cityu.edu.hk',
@@ -22,5 +24,5 @@ setup(name='rnavirhost',
 #        "determine_order = rnavirhost.determine_order:main",
         ]},
       include_package_data=True,
-      keywords=[],
-      zip_safe=False)
+      zip_safe=False
+)
