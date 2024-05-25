@@ -3,7 +3,7 @@ import glob
 import os
 import pkg_resources
 
-__version__ = "1.0.4"
+__version__ = "1.0.5"
 
 setup(name='rnavirhost',
       version=__version__,

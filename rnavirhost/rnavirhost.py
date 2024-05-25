@@ -7,7 +7,7 @@ def main():
     parser = argparse.ArgumentParser(
         usage=argparse.SUPPRESS,
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description=f"""RNAVirusHost v{rnavirhost.__version__}: a machine learning-based method for predicting hosts of RNA viruses through viral genomes
+        description=f"""RNAVirusHost: a machine learning-based method for predicting hosts of RNA viruses through viral genomes
 https://github.com/GreyGuoweiChen/VirHost.git
 
 usage: rnavirhost <program> [options]
