@@ -7,5 +7,3 @@ from rnavirhost.modules import (
     predict,
 )
 from rnavirhost import rnavirhost
-
-__version__ = "1.0.3"
