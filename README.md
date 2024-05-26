@@ -19,23 +19,33 @@ RNAVirHost is designed as a two-layer classification framework to hierarcically 
 * numpy 1.23.5
 
 ### Quick install
-We highly recommend using `conda`/`mamba` to install all the dependencies. To install, please download RNAVirHost by "git clone"
-```
-git clone https://github.com/GreyGuoweiChen/VirHost.git
-cd VirHost
+1) We highly recommend using `conda`/`mamba` to install all the dependencies. 
+    ```
+    conda install -c bioconda rnavirhost
+    ```
 
-# create the environment and install the dependencies using conda or mamba
-mamba env create -f environment.yml
+2) Or you could build the environment from GitHub:
+    ```
+    git clone https://github.com/GreyGuoweiChen/VirHost.git
+    cd VirHost
+    
+    # create the environment and install the dependencies using conda or mamba
+    mamba env create -f environment.yml
+    
+    # activate the environment
+    conda activate rnavirhost
+    
+    # distribute RNAVirHost to your conda environment
+    pip install .
+    
+    # you may check the installation by calling:
+    conda list rnavirhost
+    ```
 
-# activate the environment
-conda activate rnavirhost
-
-# distribute RNAVirHost to your conda environment
-pip install .
-
-# you may check the installation by calling:
-conda list rnavirhost
-```
+3) (Alternative) You could install it by `pip` to avoid all the dependencies, but may fail.
+   ```
+   pip install rnavirhost
+   ```
 
 
 ## Usage:
@@ -58,17 +68,17 @@ rnavirhost predict [-i INPUT_CONTIG] [--taxa TAXONOMIC_INFORMATION_OF_INPUT] [-o
 
 ### Programs' Option
 classify_order:
-```
--i: The input contig file in fasta format.
--o: The taxonoic information of query viruses at order level (default: RVH_taxa.csv).
-```
+    ```
+    -i: The input contig file in fasta format.
+    -o: The taxonoic information of query viruses at order level (default: RVH_taxa.csv).
+    ```
 
 predict:
-```
--i, --input: The input contig file in fasta format.
---taxa: The input csv file corresponding to the virus order labels of the queries (default: RVH_taxa.csv).
--o, --output: The output directory (default: RVH_result).
-```
+    ```
+    -i, --input: The input contig file in fasta format.
+    --taxa: The input csv file corresponding to the virus order labels of the queries (default: RVH_taxa.csv).
+    -o, --output: The output directory (default: RVH_result).
+    ```
 
 ### Output
 The output format is as:
