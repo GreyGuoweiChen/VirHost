@@ -43,9 +43,8 @@ RNAVirHost is designed as a two-layer classification framework to hierarcically 
    ```
    pip install rnavirhost
    ```
-
-You can check the installation by calling:
     ```
+    # You can check the installation by calling:
     conda list rnavirhost
     ```
 
@@ -69,17 +68,17 @@ rnavirhost predict [-i INPUT_CONTIG] [--taxa TAXONOMIC_INFORMATION_OF_INPUT] [-o
 
 ### Programs' Option
 classify_order:
-    ```
-    -i: The input contig file in fasta format.
-    -o: The taxonoic information of query viruses at order level (default: RVH_taxa.csv).
-    ```
+```
+-i: The input contig file in fasta format.
+-o: The taxonoic information of query viruses at order level (default: RVH_taxa.csv).
+```
 
 predict:
-    ```
-    -i, --input: The input contig file in fasta format.
-    --taxa: The input csv file corresponding to the virus order labels of the queries (default: RVH_taxa.csv).
-    -o, --output: The output directory (default: RVH_result).
-    ```
+```
+-i, --input: The input contig file in fasta format.
+--taxa: The input csv file corresponding to the virus order labels of the queries (default: RVH_taxa.csv).
+-o, --output: The output directory (default: RVH_result).
+```
 
 ### Output
 The output format is as:
