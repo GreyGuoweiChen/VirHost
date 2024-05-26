@@ -18,8 +18,8 @@ RNAVirHost is designed as a two-layer classification framework to hierarcically 
 * biopython 1.83
 * numpy 1.23.5
 
-### Quick install
-1) We highly recommend using `conda`/`mamba` to install all the dependencies. 
+### Quick Installation
+1) We highly recommend using `conda`/`mamba` to install all dependencies. 
     ```
     conda install -c bioconda rnavirhost
     ```
@@ -29,20 +29,20 @@ RNAVirHost is designed as a two-layer classification framework to hierarcically 
     git clone https://github.com/GreyGuoweiChen/VirHost.git
     cd VirHost
     
-    # create the environment and install the dependencies using conda or mamba
+    # Create the environment and install the dependencies using conda or mamba
     mamba env create -f environment.yml
     
-    # activate the environment
+    # Activate the environment
     conda activate rnavirhost
     
-    # distribute RNAVirHost to your conda environment
+    # Distribute RNAVirHost to your conda environment
     pip install .
     
-    # you may check the installation by calling:
+    # You can check the installation by calling:
     conda list rnavirhost
     ```
 
-3) (Alternative) You could install it by `pip` to avoid all the dependencies, but may fail.
+3) (Alternative) You could install it using `pip` to avoid all the dependencies, but may fail.
    ```
    pip install rnavirhost
    ```
