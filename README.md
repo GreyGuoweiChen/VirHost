@@ -49,19 +49,21 @@ RNAVirHost is designed as a two-layer classification framework to hierarcically 
     ```
 
 ## Usage:
-To enable RNAVirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. The first column is the accession numbers in the query fasta file, and the second column show the virus orders of the query viruses.
+To enable RNAVirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. 
 |   | y\|virus order |
 | ------------- | ------------- |
 | NC_000858.1 | Ortervirales  |
 | NC_019922.1  | Norzivirales  |
 | ...  | ...  |
 
-(Optional) For user convenience, we provide a simple alignment-based method for classifying virus sequences at the order level using BLASTN. Generally, the order-level predictions provided by BLASTN are sufficiently accurate. However, if users desire to refine the classification using other programs, they can follow the file format outlined in the table above. The file comprises (r+1) rows and two columns, where (r+1) represents the r sequences in the query fasta file and an additional header row. The first column denotes the sequence ID, and the second column represents the corresponding order label. If a label falls outside our designated range, it is OK to input them to the host prediction stage, and we will output the corresponding sequence ID in a separate file.
+The file comprises (r+1) rows and two columns, where (r+1) represents the r sequences in the query fasta file and an additional header row. The first column denotes the accession numbers of sequences (sequences' ID), and the second column represents the corresponding order labels. If a label falls outside our designated range, it is acceptable to input them to the host prediction stage. We will output the corresponding sequence ID in a separate file.
+
+1) For user convenience, we provide a simple alignment-based method for classifying virus sequences at the order level using BLASTN. The code for this method is shown below. Generally, the order-level predictions provided by BLASTN are sufficiently accurate. However, if users desire to refine the classification using other programs, they can follow the file format outlined in the table above.
 ```
 rnavirhost classify_order [-i INPUT_CONTIG] [-o TAXONOMIC_RESULT]
 ```
 
-The input files include the fasta file and the corresponding taxonomic information table.
+2) The input files include the fasta file and the corresponding taxonomic information table.
 ```
 rnavirhost predict [-i INPUT_CONTIG] [--taxa TAXONOMIC_INFORMATION_OF_INPUT] [-o OUTPUT_DIRECTORY]
 ```
