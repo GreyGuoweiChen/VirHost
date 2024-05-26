@@ -37,9 +37,6 @@ RNAVirHost is designed as a two-layer classification framework to hierarcically 
     
     # Distribute RNAVirHost to your conda environment
     pip install .
-    
-    # You can check the installation by calling:
-    conda list rnavirhost
     ```
 
 3) (Alternative) You could install it using `pip` to avoid all the dependencies, but may fail.
@@ -47,6 +44,10 @@ RNAVirHost is designed as a two-layer classification framework to hierarcically 
    pip install rnavirhost
    ```
 
+You can check the installation by calling:
+    ```
+    conda list rnavirhost
+    ```
 
 ## Usage:
 To enable RNAVirHost's prediction, the viral taxonomic information is required and its format (.csv) is as below. The first column is the accession numbers in the query fasta file, and the second column show the virus orders of the query viruses.
