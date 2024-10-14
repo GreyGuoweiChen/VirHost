@@ -258,6 +258,7 @@ def encoding(file_seq, df_taxa, output_dir):
         def parse_seq(record, cds_list):
             # coding each nucleotide record
             feature_count = deepcopy(feature_count_dict)
+            record.seq = record.seq.upper()  ############################## Oct 14. 24 update
             rc_record = record.reverse_complement()
             l = len(record.seq)
 
@@ -375,15 +376,16 @@ def predict(df_taxa, output_dir, acc_without_protein):
                 X = X_GT.merge(X_SH, left_index=True, right_index=True, suffixes=(None, None))
                 X = X.loc[X.index.isin(acc_with_prots)]
 
-                clf = pkl.load(open(VirHost_path + f"/model/{order}/xgb_sub_bl_L{clf_nodes[2]}.model", 'rb'))
-                y_prob = clf.predict_proba(X)
-                y_hat = np.argmax(y_prob, axis=1)
-                y_pred[f"pred|L{clf_nodes[2]}"] = list(map(lambda i: onehot2taxa[i], y_hat))
-                # y_hat = clf.predict(X)
+                if len(X) > 0:  ############################## Oct 14. 24 new
+                    clf = pkl.load(open(VirHost_path + f"/model/{order}/xgb_sub_bl_L{clf_nodes[2]}.model", 'rb'))
+                    y_prob = clf.predict_proba(X)
+                    y_hat = np.argmax(y_prob, axis=1)
+                    y_pred[f"pred|L{clf_nodes[2]}"] = list(map(lambda i: onehot2taxa[i], y_hat))
+                    # y_hat = clf.predict(X)
 
-                y_prob = np.max(y_prob, axis=1)
-                cutoff = pkl.load(open(VirHost_path + f"/model/{order}/cutoff.pkl", "rb"))
-                y_pred["evidence"] = list(map(lambda p: "pred_high_confidence" if p > cutoff else "pred_low_confidence", y_prob))
+                    y_prob = np.max(y_prob, axis=1)
+                    cutoff = pkl.load(open(VirHost_path + f"/model/{order}/cutoff.pkl", "rb"))
+                    y_pred["evidence"] = list(map(lambda p: "pred_high_confidence" if p > cutoff else "pred_low_confidence", y_prob))
 
                 if len(y_without_prots) > 0:
                     y_without_prots["pred|L1"] = X_SH.loc[X_SH.index.isin(acc_without_prots)].idxmax(axis = 1,)
